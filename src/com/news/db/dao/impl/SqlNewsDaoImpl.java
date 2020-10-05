@@ -17,7 +17,7 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 	private ConnectionPool pool = ConnectionPool.getInstance();
 	private Connection connection = null;
 	private static final String SQL_SAVE_NEWS_TO_DB = "INSERT INTO news.news (title, date, brief, content) VALUES (?, ?, ?, ?)";
-	private static final String SQL_FIND_ALL_NEWS = "SELECT * FROM news";
+	private static final String SQL_FIND_ALL_NEWS = "SELECT * FROM news ORDER BY id DESC";
 	private static final String SQL_FIND_BY_ID = "SELECT * FROM news WHERE id = ?;";
 	private static final String SQL_DELETE_BY_ID = "DELETE FROM news WHERE id = ?;";
 	private static final String SQL_UPDATE_NEWS = "UPDATE news SET title = ?, brief = ?, content = ? WHERE id = ?;";
@@ -33,7 +33,6 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 			PreparedStatement statement = connection.prepareStatement(SQL_SAVE_NEWS_TO_DB);
 			statement.setString(1, title);
 			statement.setTimestamp(2, date);
-			System.out.println(date);
 			statement.setString(3, brief);
 			statement.setNString(4, content);
 			statement.execute();
@@ -61,12 +60,8 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(SQL_FIND_ALL_NEWS);
 			while (resultSet.next()) {
-				News news = new News();
-				news.setId(resultSet.getInt(1));
-				news.setTitle(resultSet.getString(2));
-				news.setDatetime(resultSet.getTimestamp(3));
-				news.setBrief(resultSet.getString(4));
-				news.setContent(resultSet.getString(5));
+				News news = new News(resultSet.getInt(1), resultSet.getString(2), resultSet.getTimestamp(3),
+						resultSet.getString(4), resultSet.getString(5));
 				list.add(news);
 			}
 		} catch (SQLException e) {
@@ -126,7 +121,7 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 			}
 		} catch (SQLException e) {
 			throw new DaoException("Find in DB Exception", e);
-		}finally {
+		} finally {
 			try {
 				if (connection != null) {
 					pool.returnConnection(connection);

@@ -14,6 +14,8 @@ import com.news.services.ServiceProvider;
 import com.news.services.ServicesException;
 
 public class MainPageCommand implements Command{
+	private static final String ALL_NEWS_ATTRIBUTE = "allNews";
+	private static final String PAGE_URL = "/WEB-INF/jsp/news.jsp";
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -27,8 +29,8 @@ public class MainPageCommand implements Command{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 req.setAttribute("allNews", allNews);
-		 req.getServletContext().getRequestDispatcher("/WEB-INF/jsp/news.jsp").forward(req, resp);
+		 req.setAttribute(ALL_NEWS_ATTRIBUTE, allNews);
+		 req.getServletContext().getRequestDispatcher(PAGE_URL).forward(req, resp);
 	}
 
 }

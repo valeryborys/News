@@ -25,29 +25,27 @@
 				<li><a href="controller?command=addPage">Add News</a></li>
 			</ul>
 		</aside>
-		<div class="news-block">
-			<p class="title">List of News:</p>
-			<c:forEach items="${allNews}" var="news">
-				<p>
-					<span class="title"><a
-						href="controller?command=show&id=${news.id}">${news.title}</a></span> <i
-						class="time">${news.datetime}</i>
-				</p>
-				<p class="brief">${news.brief}</p>
-				<p>
-					<input class="lang" type="checkbox" name="a"> <span
-						class="lang"><button>
-							<a href="">Edit</a>
-						</button></span> <span class="lang"><button>
-							<a href="controller?command=show&id=${news.id}">View</a>
-						</button></span></br>
-				</p>
-
-			</c:forEach>
-			<div class="lang">
-				<button>Delete</button>
+		<form method="post" action="controller?command=addNews"
+			class="news-block">
+			<p>
+				<label>Title: </label><input type="text" name="title"
+					placeholder="News Title" />
+			</p>
+			<p>
+				<label>Brief: </label>
+				<textarea name="brief" placeholder="Brief" /></textarea>
+			</p>
+			<div>
+				<label>Content: </label>
+				<textarea class="content-input" name="content"
+					placeholder="News content" /></textarea>
 			</div>
-		</div>
+			<div class="bottom-margin" align="center">
+				<button type="submit">Add News</button>
+			</div>
+
+		</form>
 	</main>
+	<!-- 	<footer>This is footer</footer> -->
 </body>
 </html>

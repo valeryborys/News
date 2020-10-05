@@ -17,7 +17,7 @@ public class ConnectionPool {
 	private static final String DB_LOGIN = "db.login";
 	private static final String DB_PASSWORD = "db.password";
 	private static final String DB_CONNECTIONS_QUANTITY = "db.connectionsQuantity";
-
+	private static final String RESOURSES = "resources.db";
 	private BlockingQueue<Connection> freeConnections;
 	private BlockingQueue<Connection> givenConnections;
 
@@ -39,7 +39,7 @@ public class ConnectionPool {
 
 	public void init() {
 		try {
-			ResourceBundle bundle = ResourceBundle.getBundle("resources.db");
+			ResourceBundle bundle = ResourceBundle.getBundle(RESOURSES);
 			String dbUrl = bundle.getString(DB_URL);
 			String dbDriverClassName = bundle.getString(DB_DRIVER_CLASS_NAME);
 			String dbLogin = bundle.getString(DB_LOGIN);

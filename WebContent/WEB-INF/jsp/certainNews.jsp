@@ -22,7 +22,7 @@
 			<p align="center">News:</p>
 			<ul>
 				<li><a href="controller?command=main">News List</a></li>
-				<li><a href="">Add News</a></li>
+				<li><a href="controller?command=addPage">Add News</a></li>
 			</ul>
 		</aside>
 		<div class="news-block">
@@ -30,7 +30,7 @@
 						<i class="time"><c:out value="${certainNews.datetime}"/></i></p> 
 						<p class="brief"><c:out value="${certainNews.brief}"/></p>
 						<p class="content"><c:out value="${certainNews.content}"/></p>
-						<span class="lang"><button>Delete</button></span>
+						<span class="lang"><a href = "controller?command=delete&id=${certainNews.id}"><button>Delete</button></a></span>
 						<span class="lang"><button>Edit</button></span>
 						
 		</div>

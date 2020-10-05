@@ -8,6 +8,31 @@ public class News {
 	private Timestamp datetime;
 	private String brief;
 	private String content;
+	
+	public News() {
+		super();
+	}
+
+	
+	public News(String title, String brief, String content) {
+		this.title = title;
+		this.brief = brief;
+		this.content = content;
+	}
+	
+	
+
+	
+
+	public News(int id, String title, Timestamp datetime, String brief, String content) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.datetime = datetime;
+		this.brief = brief;
+		this.content = content;
+	}
+
 
 	public int getId() {
 		return id;

@@ -1,0 +1,55 @@
+.header-block {
+	border: 2px solid black;
+	margin-bottom: 40px;
+}
+
+.lang {
+	float: right;
+	display: inline;
+/* 	margin-right: 15px; */
+	
+
+}
+
+.logo {
+	margin-left:20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font: 30pt arial;
+	color: green;
+}
+
+.management-block {
+	width: 10%;
+	float: left;
+	background-color: #f0f0f0;
+	border: 2px solid black;
+}
+
+.news-block {
+	border: 2px solid black;
+	width: 87%;
+	float: right;
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 11pt;
+	color: #333;
+}
+
+.title{
+	font: 20pt arial;
+/* 	padding-left:20px; */
+	
+}
+
+.time{
+	float: right;
+}
+
+.brief{
+	font: 20pt arial;
+/* 	padding-left: 10px; */
+}
+.content{
+	font: 15pt arial;
+	padding-left: 10px;
+}

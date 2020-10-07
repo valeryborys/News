@@ -157,4 +157,30 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 
 	}
 
+	@Override
+	public void delete(int[] checkbox) throws DaoException {
+		connection = pool.takeConnection();
+		try {
+		for(int id: checkbox) {
+			PreparedStatement statement = connection.prepareStatement(SQL_DELETE_BY_ID);
+			statement.setInt(1, id);
+			statement.execute();
+		}
+		}catch (SQLException e) {
+			throw new DaoException("Delete form DB Exception", e);
+		} finally {
+			try {
+				if (connection != null) {
+					pool.returnConnection(connection);
+				}
+			} catch (DaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	
+
 }

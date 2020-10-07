@@ -12,27 +12,25 @@ import com.news.services.NewsService;
 import com.news.services.ServiceProvider;
 import com.news.services.ServicesException;
 
-public class ShowCertainNewsCommand implements Command {
-	private static final String CERTAIN_NEWS_ATTRIBUTE = "certainNews";
+public class EditNewsPageCommand implements Command{
 	private static final String ID = "id";
-	private static final String PAGE_URL = "/WEB-INF/jsp/certainNews.jsp";
+	private static final String PAGE_URL = "/WEB-INF/jsp/editNews.jsp";
+	private static final String CERTAIN_NEWS_ATTRIBUTE = "certainNews";
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		int newsId = Integer.parseInt(req.getParameter(ID));
 		ServiceProvider provider = ServiceProvider.getInstance();
 		NewsService service = provider.getNewsService();
-		int newsId = Integer.parseInt(req.getParameter(ID));
 		News certainNews = null;
 		try {
 			certainNews = service.find(newsId);
-			
 		} catch (ServicesException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		req.setAttribute(CERTAIN_NEWS_ATTRIBUTE, certainNews);
 		req.getRequestDispatcher(PAGE_URL).forward(req, resp);
-		
 		
 	}
 

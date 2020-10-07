@@ -20,12 +20,13 @@ public class Controller extends HttpServlet {
 		String commandName = req.getParameter(COMMAND);
 		Command command = provider.getCommand(commandName);
 		command.execute(req, resp);
+	
 		
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
+		doGet(req,resp);
 	}
 	
 	

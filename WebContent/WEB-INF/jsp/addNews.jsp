@@ -29,19 +29,24 @@
 			class="news-block">
 			<p>
 				<label>Title: </label><input type="text" name="title"
-					placeholder="News Title" />
+					placeholder="News Title" value="${certainNews.title}" />
 			</p>
+			<p align="center" class="warning">${titleWarning}</p>
 			<p>
 				<label>Brief: </label>
-				<textarea name="brief" placeholder="Brief" /></textarea>
+				<textarea name="brief" placeholder="Brief"><c:out value="${certainNews.brief}"/></textarea>
 			</p>
-			<div>
+			<p align="center" class="warning">${briefWarning}</p>
+			<p>
 				<label>Content: </label>
 				<textarea class="content-input" name="content"
-					placeholder="News content" /></textarea>
-			</div>
+					placeholder="News content"><c:out value="${certainNews.content}" /></textarea>
+			</p>
+			<p align="center" class="warning">${contentWarning}</p>
 			<div class="bottom-margin" align="center">
 				<button type="submit">Add News</button>
+				<input type="button" value="Cancel"
+					onclick='location.href="controller?command=main"'>
 			</div>
 
 		</form>

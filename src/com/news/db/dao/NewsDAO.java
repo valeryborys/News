@@ -10,4 +10,5 @@ public interface NewsDAO<News> {
 	News find(int id) throws DaoException;
 	void update(News news) throws DaoException;
 	List<News> findAll() throws DaoException;
+	void delete(int[] checkbox)  throws DaoException;
 }

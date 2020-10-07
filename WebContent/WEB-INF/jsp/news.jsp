@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,29 +26,31 @@
 				<li><a href="controller?command=addPage">Add News</a></li>
 			</ul>
 		</aside>
-		<div class="news-block">
-			<p class="title">List of News:</p>
+		<form method="post" action="controller?command=deleteChosen"
+			class="news-block">
+			<p class="title">Latest news:</p>
 			<c:forEach items="${allNews}" var="news">
 				<p>
 					<span class="title"><a
-						href="controller?command=show&id=${news.id}">${news.title}</a></span> <i
-						class="time">${news.datetime}</i>
+						href="controller?command=show&id=${news.id}">${news.title}</a></span> 
+						<fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${news.datetime}" var="time"/>
+						<i class="time">${time}</i>
 				</p>
 				<p class="brief">${news.brief}</p>
-				<p>
-					<input class="lang" type="checkbox" name="a"> <span
-						class="lang"><button>
-							<a href="">Edit</a>
-						</button></span> <span class="lang"><button>
-							<a href="controller?command=show&id=${news.id}">View</a>
-						</button></span></br>
-				</p>
+				<div class="bottom-margin">
+					<input class="lang" type="checkbox" name="deleteCheckbox"
+						value="${news.id}"> <input class="lang" type="button"
+						value="Edit"
+						onclick='location.href="controller?command=editPage&id=${news.id}"'>
+					<input class="lang" type="button" value="View"
+						onclick='location.href="controller?command=show&id=${news.id}"'></br>
+				</div>
 
 			</c:forEach>
-			<div class="lang">
-				<button>Delete</button>
+			<div class="lang bottom-margin">
+				<button type="submit">Delete</button>
 			</div>
-		</div>
+		</form>
 	</main>
 </body>
 </html>

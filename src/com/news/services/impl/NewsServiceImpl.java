@@ -66,5 +66,15 @@ public class NewsServiceImpl implements NewsService {
 			throw new ServicesException("Find all in DB service exception", e);
 		}
 	}
+	@Override
+	public void delete(int[] checkbox) throws ServicesException {
+		try {
+			DaoProvider provider = DaoProvider.getInstance();
+			NewsDAO<News> newsDao = provider.getNewsDao();
+			newsDao.delete(checkbox);
+		} catch (DaoException e) {
+			throw new ServicesException("Delete from DB service exception", e);
+		}
+	}
 
 }

@@ -11,5 +11,6 @@ public interface NewsService {
 	void delete(int id) throws ServicesException;
 	void update(News news) throws ServicesException;
 	List<News> findAll() throws ServicesException;
+	void delete(int[] checkbox) throws ServicesException;
 	
 }

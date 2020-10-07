@@ -24,6 +24,15 @@ public class News {
 
 	
 
+	public News(int id, String title, String brief, String content) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.brief = brief;
+		this.content = content;
+	}
+
+
 	public News(int id, String title, Timestamp datetime, String brief, String content) {
 		super();
 		this.id = id;

@@ -11,6 +11,7 @@ import com.news.model.News;
 import com.news.services.NewsService;
 import com.news.services.ServiceProvider;
 import com.news.services.ServicesException;
+import com.news.services.impl.NewsValidationService;
 
 public class AddNewsCommand implements Command{
 	private static final String PAGE_URL = "controller?command=main";
@@ -26,6 +27,21 @@ public class AddNewsCommand implements Command{
 	    News news = new News(title, brief, content);
 	    ServiceProvider provider = ServiceProvider.getInstance();
 	    NewsService service = provider.getNewsService();
+	    NewsValidationService validator = new NewsValidationService(news);
+	    if (!validator.titleValidation()) {
+	    	req.setAttribute("certainNews", news);
+	    	req.setAttribute("titleWarning", "Somethig wrong with title");
+	    	req.getRequestDispatcher("controller?command=addPage").forward(req, resp);
+	    } else if(!validator.briefValidation()) {
+	    	req.setAttribute("certainNews", news);
+	    	req.setAttribute("briefWarning", "Somethig wrong with brief");
+	    	req.getRequestDispatcher("controller?command=addPage").forward(req, resp);
+	    }else if(!validator.contentValidation()) {
+	    	req.setAttribute("certainNews", news);
+	    	req.setAttribute("contentWarning", "Somethig wrong with content");
+	    	req.getRequestDispatcher("controller?command=addPage").forward(req, resp);
+	    }
+	    else {
 	    try {
 			service.save(news);
 		} catch (ServicesException e) {
@@ -33,7 +49,7 @@ public class AddNewsCommand implements Command{
 			e.printStackTrace();
 		}
 	    resp.sendRedirect(PAGE_URL);
-	    
+	    }
 		
 	}
 

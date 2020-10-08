@@ -12,7 +12,7 @@ import com.news.services.NewsService;
 import com.news.services.ServiceProvider;
 import com.news.services.ServicesException;
 
-public class EditNewsPageCommand implements Command{
+public class EditNewsPageCommand implements Command {
 	private static final String ID = "id";
 	private static final String PAGE_URL = "/WEB-INF/jsp/editNews.jsp";
 	private static final String CERTAIN_NEWS_ATTRIBUTE = "certainNews";
@@ -23,15 +23,17 @@ public class EditNewsPageCommand implements Command{
 		ServiceProvider provider = ServiceProvider.getInstance();
 		NewsService service = provider.getNewsService();
 		News certainNews = null;
-		try {
-			certainNews = service.find(newsId);
-		} catch (ServicesException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (req.getAttribute(CERTAIN_NEWS_ATTRIBUTE) != null) {
+			req.getRequestDispatcher(PAGE_URL).forward(req, resp);
+		} else {
+			try {
+				certainNews = service.find(newsId);
+			} catch (ServicesException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			req.setAttribute(CERTAIN_NEWS_ATTRIBUTE, certainNews);
+			req.getRequestDispatcher(PAGE_URL).forward(req, resp);
 		}
-		req.setAttribute(CERTAIN_NEWS_ATTRIBUTE, certainNews);
-		req.getRequestDispatcher(PAGE_URL).forward(req, resp);
-		
 	}
-
 }

@@ -13,10 +13,11 @@ import com.news.services.ServicesException;
 
 public class DeleteChosenNewsCommand implements Command {
 	private static final String PAGE_URL = "controller?command=main";
+	private static final String PARAVETER_VALUES = "deleteCheckbox";
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String[] checkboxString = req.getParameterValues("deleteCheckbox");
+		String[] checkboxString = req.getParameterValues(PARAVETER_VALUES);
 		int[] checkbox = new int[checkboxString.length];
 		for (int i = 0; i < checkboxString.length; i++) {
 			checkbox[i] = Integer.parseInt(checkboxString[i]);

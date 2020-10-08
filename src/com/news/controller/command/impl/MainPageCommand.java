@@ -13,7 +13,7 @@ import com.news.services.NewsService;
 import com.news.services.ServiceProvider;
 import com.news.services.ServicesException;
 
-public class MainPageCommand implements Command{
+public class MainPageCommand implements Command {
 	private static final String ALL_NEWS_ATTRIBUTE = "allNews";
 	private static final String PAGE_URL = "/WEB-INF/jsp/news.jsp";
 
@@ -23,14 +23,14 @@ public class MainPageCommand implements Command{
 		NewsService newsService = provider.getNewsService();
 		List<News> allNews = null;
 		try {
-			 allNews = newsService.findAll();
-			
+			allNews = newsService.findAll();
+
 		} catch (ServicesException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 req.setAttribute(ALL_NEWS_ATTRIBUTE, allNews);
-		 req.getServletContext().getRequestDispatcher(PAGE_URL).forward(req, resp);
+		req.setAttribute(ALL_NEWS_ATTRIBUTE, allNews);
+		req.getServletContext().getRequestDispatcher(PAGE_URL).forward(req, resp);
 	}
 
 }

@@ -25,15 +25,14 @@ public class ShowCertainNewsCommand implements Command {
 		News certainNews = null;
 		try {
 			certainNews = service.find(newsId);
-			
+
 		} catch (ServicesException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		req.setAttribute(CERTAIN_NEWS_ATTRIBUTE, certainNews);
 		req.getRequestDispatcher(PAGE_URL).forward(req, resp);
-		
-		
+
 	}
 
 }

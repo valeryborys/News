@@ -1,16 +1,17 @@
 input[type=text], select, textarea {
-  width: 90%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-  margin-left:10px;
+	width: 90%;
+	padding: 12px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	resize: vertical;
+	margin-left: 10px;
 }
 
-a{
+a {
 	text-decoration: none;
 }
-.warning{
+
+.warning {
 	color: red;
 }
 
@@ -44,14 +45,14 @@ a{
 	border: 2px solid black;
 	width: 85%;
 	float: right;
-	padding-left:15px;
-	padding-right:15px;
+	padding-left: 15px;
+	padding-right: 15px;
 	
 }
 
 .title {
 	font: 20pt arial;
-	padding-left:20px;
+	padding-left: 20px;
 	color: black;
 }
 
@@ -67,13 +68,14 @@ a{
 .content {
 	font: 15pt;
 	padding-left: 10px;
+	white-space: pre-line;
 }
 
-.bottom-margin{
+.bottom-margin {
 	margin-bottom: 10px;
 	margin-top: 10px;
 }
+
 .content-input {
 	height: 300px;
-	
 }

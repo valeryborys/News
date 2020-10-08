@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,9 +32,10 @@
 			<c:forEach items="${allNews}" var="news">
 				<p>
 					<span class="title"><a
-						href="controller?command=show&id=${news.id}">${news.title}</a></span> 
-						<fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${news.datetime}" var="time"/>
-						<i class="time">${time}</i>
+						href="controller?command=show&id=${news.id}">${news.title}</a></span>
+					<fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${news.datetime}"
+						var="time" />
+					<i class="time">${time}</i>
 				</p>
 				<p class="brief">${news.brief}</p>
 				<div class="bottom-margin">

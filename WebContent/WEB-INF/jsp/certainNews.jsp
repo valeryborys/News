@@ -36,9 +36,9 @@
 			<p class="brief">
 				<c:out value="${certainNews.brief}" />
 			</p>
-			<p class="content">
+			<div class="content" >
 				<c:out value="${certainNews.content}" />
-			</p>
+			</div>
 			<div class="lang bottom-margin">
 				<span class="lang"><a
 					href="controller?command=delete&id=${certainNews.id}"><button>Delete</button></a></span>
@@ -48,6 +48,5 @@
 
 		</div>
 	</main>
-	<!-- 	<footer>This is footer</footer> -->
 </body>
 </html>

@@ -25,27 +25,36 @@
 				<li><a href="controller?command=addPage">Add News</a></li>
 			</ul>
 		</aside>
-		<form method="post" action="controller?command=edit&id=${certainNews.id}" class="news-block">
-		<input name="id" value="${certainNews.id}" type="hidden">
+		<form method="post"
+			action="controller?command=edit&id=${certainNews.id}"
+			class="news-block">
+			<input name="id" value="${certainNews.id}" type="hidden">
 			<p>
-				<label>Title: </label><textarea name="title" placeholder="News title" ><c:out value="${certainNews.title}"/></textarea>
+				<label>Title: </label>
+				<textarea name="title" placeholder="News title"><c:out
+						value="${certainNews.title}" /></textarea>
 			</p>
+			<p align="center" class="warning">${titleWarning}</p>
 			<p>
 				<label>Brief: </label>
-				<textarea name="brief" placeholder="Brief"><c:out value="${certainNews.brief}"/></textarea>
+				<textarea name="brief" placeholder="Brief"><c:out
+						value="${certainNews.brief}" /></textarea>
 			</p>
-			<div>
+			<p align="center" class="warning">${briefWarning}</p>
+			<p>
 				<label>Content: </label>
 				<textarea class="content-input" name="content"
-					placeholder="News content" ><c:out value="${certainNews.content}"/></textarea>
-			</div>
+					placeholder="News content"><c:out
+						value="${certainNews.content}" /></textarea>
+			</p>
+			<p align="center" class="warning">${contentWarning}</p>
 			<div class="bottom-margin" align="center">
-				<button type="submit">Confirm</button>   
-				<input  type="button" value="Cancel" onclick='location.href="controller?command=show&id=${certainNews.id}"'>
+				<button type="submit">Confirm</button>
+				<input type="button" value="Cancel"
+					onclick='location.href="controller?command=show&id=${certainNews.id}"'>
 			</div>
 
 		</form>
 	</main>
-	<!-- 	<footer>This is footer</footer> -->
 </body>
 </html>

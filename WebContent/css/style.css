@@ -21,7 +21,6 @@ a {
 }
 
 .lang {
-	float: right;
 	display: inline;
 	margin-right: 15px;
 }
@@ -32,6 +31,7 @@ a {
 	margin-bottom: 10px;
 	font: 30pt arial;
 	color: green;
+
 }
 
 .management-block {
@@ -78,4 +78,9 @@ a {
 
 .content-input {
 	height: 300px;
+}
+.management-buttons {
+	float:right;
+	display: inline;
+	margin-right: 15px;
 }

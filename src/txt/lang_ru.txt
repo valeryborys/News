@@ -1,0 +1,17 @@
+news=Новости
+title=Заголовок
+brief=Лид-вступление
+content=Содержимое
+lang.english=English
+lang.russian=Русский
+list.newsList=Список новостей
+list.addNews=Добавить новость
+newsBlock.latestNews=Последние новости
+newsBlock.editButton=Изменить
+newsBlock.viewButton=Просмотр
+newsBlock.deleteButton=Удалить
+newsBlock.cancelButton=Отменить
+newsBlock.confirmButton=Подтвердить
+warning.title=Заголовок должен содержать от 10 до 500 символов.
+warning.brief=Лид-вступление должно содержать от 10 до 3000 символов.
+warning.content=Содержимое дожно включать по меньшей мере 10 символов.

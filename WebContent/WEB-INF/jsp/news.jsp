@@ -65,9 +65,13 @@
 				<p>
 					<span class="title"><a
 						href="controller?command=show&id=${news.id}">${news.title}</a></span>
-					<fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${news.datetime}"
-						var="time" />
-					<i class="time">${time}</i>
+					<c:set var="loc" value="${sessionScope.locale}" />
+					<c:set var="ru_loc" value="ru" />
+					<c:set var="en_loc" value="en" />
+					<c:if test="${loc==ru_loc}"><fmt:formatDate pattern="dd-MM-yyyy HH:mm" value="${news.datetime}" var="ru_time" />
+					<i class="time">${ru_time}</i></c:if>
+					<c:if test="${loc==en_loc}"><fmt:formatDate pattern="MM/dd/yy HH:mm" value="${news.datetime}" var="en_time" />
+					<i class="time">${en_time}</i></c:if>
 				</p>
 				<p class="brief">${news.brief}</p>
 				<div class="bottom-margin">

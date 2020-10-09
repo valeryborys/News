@@ -52,9 +52,20 @@
 		<div class="news-block">
 			<p>
 				<span class="title"><c:out value="${certainNews.title}" /></span>
-				<fmt:formatDate pattern="dd-MM-yyyy HH:mm"
-					value="${certainNews.datetime}" var="time" />
-				<i class="time">${time}</i>
+				<c:set var="loc" value="${sessionScope.locale}" />
+				<c:set var="ru_loc" value="ru" />
+				<c:set var="en_loc" value="en" />
+				<c:if test="${loc==ru_loc}">
+					<fmt:formatDate pattern="dd-MM-yyyy HH:mm"
+						value="${certainNews.datetime}" var="ru_time" />
+					<i class="time">${ru_time}</i>
+				</c:if>
+				<c:if test="${loc==en_loc}">
+					<fmt:formatDate pattern="MM/dd/yy HH:mm"
+						value="${certainNews.datetime}" var="en_time" />
+					<i class="time">${en_time}</i>
+				</c:if>
+
 			</p>
 			<p class="brief">
 				<c:out value="${certainNews.brief}" />

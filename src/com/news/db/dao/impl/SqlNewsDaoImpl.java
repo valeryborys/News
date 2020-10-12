@@ -9,6 +9,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.news.db.connectionpool.ConnectionPool;
 import com.news.db.dao.NewsDAO;
 import com.news.model.News;
@@ -21,6 +24,7 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 	private static final String SQL_FIND_BY_ID = "SELECT * FROM news WHERE id = ?;";
 	private static final String SQL_DELETE_BY_ID = "DELETE FROM news WHERE id = ?;";
 	private static final String SQL_UPDATE_NEWS = "UPDATE news SET title = ?, brief = ?, content = ? WHERE id = ?;";
+	private static final Logger logger = LogManager.getLogger(SqlNewsDaoImpl.class);
 
 	@Override
 	public void save(News news) throws DaoException {
@@ -44,8 +48,7 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 					pool.returnConnection(connection);
 				}
 			} catch (DaoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			logger.error("Connection returning exception after saving News to the DB");
 			}
 		}
 
@@ -72,8 +75,7 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 					pool.returnConnection(connection);
 				}
 			} catch (DaoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("Connection returning exception after News finding");
 			}
 		}
 		return list;
@@ -97,8 +99,7 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 					pool.returnConnection(connection);
 				}
 			} catch (DaoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("Connection returning exception after News updating");
 			}
 		}
 
@@ -127,8 +128,7 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 					pool.returnConnection(connection);
 				}
 			} catch (DaoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("Connection returning exception after News finding");
 			}
 		}
 		return news;
@@ -150,8 +150,7 @@ public class SqlNewsDaoImpl implements NewsDAO<News> {
 					pool.returnConnection(connection);
 				}
 			} catch (DaoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("Connection returning exception after News deleting");
 			}
 		}
 

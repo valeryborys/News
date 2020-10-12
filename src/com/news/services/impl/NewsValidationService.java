@@ -6,6 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.news.db.dao.impl.SqlNewsDaoImpl;
 import com.news.model.News;
 
 public class NewsValidationService {
@@ -15,6 +19,7 @@ public class NewsValidationService {
 	private static final String BRIEF_WARNING_ATTRIBUTE = "briefWarning";
 	private static final String CONTENT_WARNING_ATTRIBUTE = "contentWarning";
 	private static final int WARNING = 10;
+	private static final Logger logger = LogManager.getLogger(NewsValidationService.class);
 
 	public NewsValidationService() {
 
@@ -26,16 +31,19 @@ public class NewsValidationService {
 			req.setAttribute(CERTAIN_NEWS_ATTRIBUTE, news);
 			req.setAttribute(TITLE_WARNING_ATTRIBUTE, WARNING);
 			req.getRequestDispatcher(COMMAND + command).forward(req, resp);
+			logger.info("The News did not pass validation");
 			return false;
 		} else if (!briefValidation(news.getBrief())) {
 			req.setAttribute(CERTAIN_NEWS_ATTRIBUTE, news);
 			req.setAttribute(BRIEF_WARNING_ATTRIBUTE, WARNING);
 			req.getRequestDispatcher(COMMAND + command).forward(req, resp);
+			logger.info("The News did not pass validation");
 			return false;
 		} else if (!contentValidation(news.getContent())) {
 			req.setAttribute(CERTAIN_NEWS_ATTRIBUTE, news);
 			req.setAttribute(CONTENT_WARNING_ATTRIBUTE, WARNING);
 			req.getRequestDispatcher(COMMAND + command).forward(req, resp);
+			logger.info("The News did not pass validation");
 			return false;
 		} else
 			return true;

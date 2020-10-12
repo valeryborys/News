@@ -7,6 +7,10 @@ import java.util.ResourceBundle;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.news.controller.command.impl.ShowCertainNewsCommand;
 import com.news.db.dao.impl.DaoException;
 
 public class ConnectionPool {
@@ -20,6 +24,7 @@ public class ConnectionPool {
 	private static final String RESOURSES = "resources.db";
 	private BlockingQueue<Connection> freeConnections;
 	private BlockingQueue<Connection> givenConnections;
+	private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
 
 	private ConnectionPool() {
 
@@ -53,8 +58,7 @@ public class ConnectionPool {
 				freeConnections.put(connection);
 			}
 		} catch (SQLException | ClassNotFoundException | InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Connection Pool intialization exception");
 		}
 	}
 
@@ -64,8 +68,7 @@ public class ConnectionPool {
 			connection = freeConnections.take();
 			givenConnections.put(connection);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Connection Pool take connection exception");
 		}
 		return connection;
 
@@ -77,15 +80,13 @@ public class ConnectionPool {
 				throw new DaoException("connection is empty");
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			logger.error("Connection Pool connection returning exception. Connection is empty");
 		}
 		try {
 			givenConnections.remove(connection);
 			freeConnections.put(connection);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("Connection Pool connection returning exception.");
 		}
 
 	}

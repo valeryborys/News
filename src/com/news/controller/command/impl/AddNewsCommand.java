@@ -6,6 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.news.controller.Controller;
 import com.news.controller.command.Command;
 import com.news.model.News;
 import com.news.services.NewsService;
@@ -19,6 +23,7 @@ public class AddNewsCommand implements Command {
 	private static final String NEWS_BRIEF = "brief";
 	private static final String NEWS_CONTENT = "content";
 	private static final String COMMAND_ADD_PAGE = "addPage";
+	private static final Logger logger = LogManager.getLogger(AddNewsCommand.class);
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -32,9 +37,9 @@ public class AddNewsCommand implements Command {
 		if (validator.validate(req, resp, news, COMMAND_ADD_PAGE)) {
 			try {
 				service.save(news);
+				logger.info("The News was succesfully saved");
 			} catch (ServicesException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			logger.error("Service Exception while saving new News to the DB");
 			}
 			resp.sendRedirect(PAGE_URL);
 		}

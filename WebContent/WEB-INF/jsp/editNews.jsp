@@ -107,7 +107,7 @@
 				<button type="submit">
 					<c:out value="${confirmButton}" />
 				</button>
-				<input type="button" value="Cancel"
+				<input type="button" value="${cancelButton}"
 					onclick='location.href="controller?command=show&id=${certainNews.id}"'>
 			</div>
 

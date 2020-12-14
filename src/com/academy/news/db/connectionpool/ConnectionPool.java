@@ -10,7 +10,6 @@ import java.util.concurrent.BlockingQueue;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.academy.news.controller.command.impl.ShowCertainNewsCommand;
 import com.academy.news.db.dao.impl.DaoException;
 
 public class ConnectionPool {
@@ -27,7 +26,6 @@ public class ConnectionPool {
 	private static final Logger logger = LogManager.getLogger(ConnectionPool.class);
 
 	private ConnectionPool() {
-
 	}
 
 	public static ConnectionPool getInstance() {
@@ -71,7 +69,6 @@ public class ConnectionPool {
 			logger.error("Connection Pool take connection exception");
 		}
 		return connection;
-
 	}
 
 	public void returnConnection(Connection connection) throws DaoException {
@@ -88,7 +85,6 @@ public class ConnectionPool {
 		} catch (InterruptedException e) {
 			logger.error("Connection Pool connection returning exception.");
 		}
-
 	}
 
 }

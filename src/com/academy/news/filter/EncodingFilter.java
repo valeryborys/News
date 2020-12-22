@@ -24,7 +24,6 @@ public class EncodingFilter implements Filter{
 		req.setCharacterEncoding(encoding);
 		resp.setCharacterEncoding(encoding);
 		filterChain.doFilter(req, resp);
-		System.out.println("filter works!!!");
 	}
 
 	@Override
